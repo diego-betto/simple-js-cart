@@ -18,3 +18,32 @@ td, th {
     border: 1px solid;
     padding: 3px 5px;
 }
+
+#items {
+    list-style: none;
+    padding: 0;
+    width: 300px;
+}
+#items li {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#items li + li {
+    border-top: 1px solid #ccc;
+}
+
+#items li:hover {
+    background-color: pink;
+}
+
+#items li:active {
+    background-color: lightblue;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

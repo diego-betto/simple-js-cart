@@ -100,47 +100,61 @@ function handleProductClick(prodotto) {
 const prodotti = [
     {
         sku: 'GAME01',
-        nome: 'GTA',
+        nome: 'Gran Theft Auto',
         prezzo: 70,
         magazzino: 100
     },
     {
         sku: 'GAME02',
-        nome: 'CoD',
+        nome: 'Call of Duty',
+        prezzo: 26,
+        magazzino: 50
+    },
+    {
+        sku: 'GAME03',
+        nome: 'Fifa Pro Evolution',
+        prezzo: 26,
+        magazzino: 50
+    },
+    {
+        sku: 'GAME04',
+        nome: 'Ghost and Gobblins',
+        prezzo: 26,
+        magazzino: 50
+    },
+    {
+        sku: 'GAME05',
+        nome: 'Xonotic',
+        prezzo: 26,
+        magazzino: 50
+    },
+    {
+        sku: 'GAME06',
+        nome: 'SIMS 4',
+        prezzo: 26,
+        magazzino: 50
+    },
+    {
+        sku: 'GAME07',
+        nome: 'Unreal Tournament 2004',
         prezzo: 26,
         magazzino: 50
     }
 ];
 
-let qtaElement;
-let totalElement;
+// versione classica, sotto uso invece la versione arrow function
+// function updateProductsList(cercato) {
 
-let productsList;
-let carrelloElement;
+const updateProductsList = (cercato) => {
+    productsList.innerHTML = '';
 
-let qta = 0;
-const prezzo = 120;
-let Carrello
-
-console.log('qtaElement', qtaElement)
-
-document.addEventListener('DOMContentLoaded', () => {
-    qtaElement = document.getElementById('qta')
-    totalElement = document.getElementById('total')
-    
-    productsList = document.getElementById('items')
-    carrelloElement = document.getElementById('carrello')
-
-    Carrello = cart();
-
-    console.log(
-        document.getElementById('carrello')
-    )
-
-    prodotti.forEach(function(item) {
+    prodotti
+    .filter((p) => !cercato || p.nome.toLowerCase().indexOf(cercato.toLowerCase()) >= 0)
+    .forEach(function(item) {
         const listItem = document.createElement('li');
     
-        listItem.textContent = item.nome;
+        // listItem.innerHTML = item.nome + ' <b>' + item.prezzo + '€</b>';
+        listItem.innerHTML = `${item.nome}<b>${item.prezzo}€</b>`;
     
         listItem.addEventListener(
             'click',
@@ -149,4 +163,41 @@ document.addEventListener('DOMContentLoaded', () => {
     
         productsList.appendChild(listItem)
     })
+}
+
+let qtaElement;
+let totalElement;
+
+let productsList;
+let carrelloElement;
+
+let searchField;
+
+let qta = 0;
+const prezzo = 120;
+let Carrello;
+
+document.addEventListener('DOMContentLoaded', () => {
+    qtaElement = document.getElementById('qta')
+    totalElement = document.getElementById('total')
+    
+    productsList = document.getElementById('items')
+    carrelloElement = document.getElementById('carrello')
+
+    searchField = document.getElementById('cerca')
+
+    Carrello = cart();
+
+    updateProductsList();
+
+    searchField.addEventListener(
+        'change',
+        (event) => {
+            // cerco il valore dentro il target che è il campo di input
+            // ovvero il target dell'evento
+            const valoreCercato = event.target.value;
+
+            updateProductsList(valoreCercato);
+        }
+    )
 })
