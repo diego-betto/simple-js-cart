@@ -1,27 +1,3 @@
-const prodotti = [
-    {
-        sku: 'GAME01',
-        nome: 'GTA',
-        prezzo: 70,
-        magazzino: 100
-    },
-    {
-        sku: 'GAME02',
-        nome: 'CoD',
-        prezzo: 26,
-        magazzino: 50
-    }
-];
-
-const qtaElement = document.getElementById('qta')
-const totalElement = document.getElementById('total')
-
-const productsList = document.getElementById('items')
-const carrelloElement = document.getElementById('carrello')
-
-let qta = 0;
-const prezzo = 120;
-
 function addRow(pSku, pProdotto, pPrezzo, pQta) {
     const row = document.createElement('tr');
 
@@ -99,8 +75,6 @@ const cart = () => {
     }
 }
 
-const Carrello = cart();
-
 function updateCartTable() {
     carrelloElement.innerHTML = '';
     
@@ -122,41 +96,57 @@ function handleProductClick(prodotto) {
 
     updateCartTable()
 }
+/** MAIN */
+const prodotti = [
+    {
+        sku: 'GAME01',
+        nome: 'GTA',
+        prezzo: 70,
+        magazzino: 100
+    },
+    {
+        sku: 'GAME02',
+        nome: 'CoD',
+        prezzo: 26,
+        magazzino: 50
+    }
+];
 
-prodotti.forEach(function(item) {
-    const listItem = document.createElement('li');
+let qtaElement;
+let totalElement;
 
-    listItem.textContent = item.nome;
-
-    listItem.addEventListener(
-        'click',
-        () => handleProductClick(item)
-    )
-
-    productsList.appendChild(listItem)
-})
-
-/*
-const items = document.querySelectorAll('#items li')
-
-const itemsArray = Array.from(items);
+let productsList;
+let carrelloElement;
 
 let qta = 0;
 const prezzo = 120;
+let Carrello
 
-qtaElement.textContent = qta;
-totalElement.textContent = qta * prezzo;
+console.log('qtaElement', qtaElement)
 
-function handleProductClick() {
-    qta += 1;
+document.addEventListener('DOMContentLoaded', () => {
+    qtaElement = document.getElementById('qta')
+    totalElement = document.getElementById('total')
+    
+    productsList = document.getElementById('items')
+    carrelloElement = document.getElementById('carrello')
 
-    qtaElement.textContent = qta;
-    totalElement.textContent = qta * prezzo;
-}
+    Carrello = cart();
 
-itemsArray.forEach(function (item) {
-    item.addEventListener(
-        'click',
-        handleProductClick
+    console.log(
+        document.getElementById('carrello')
     )
-})*/
+
+    prodotti.forEach(function(item) {
+        const listItem = document.createElement('li');
+    
+        listItem.textContent = item.nome;
+    
+        listItem.addEventListener(
+            'click',
+            () => handleProductClick(item)
+        )
+    
+        productsList.appendChild(listItem)
+    })
+})
