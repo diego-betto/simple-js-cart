@@ -95,6 +95,7 @@ function handleProductClick(prodotto) {
     totalElement.textContent = Carrello.totale();
 
     updateCartTable()
+    updateProductsList()
 }
 /** MAIN */
 const prodotti = [
@@ -155,6 +156,15 @@ const updateProductsList = (cercato) => {
     
         // listItem.innerHTML = item.nome + ' <b>' + item.prezzo + '€</b>';
         listItem.innerHTML = `${item.nome}<b>${item.prezzo}€</b>`;
+
+        console.log(
+            Carrello.oggetti(),
+            item
+        )
+
+        if (Carrello.oggetti().findIndex((i) => item.sku === i.sku) >=0) {
+            listItem.className = 'added'
+        }
     
         listItem.addEventListener(
             'click',
@@ -190,8 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateProductsList();
 
+    // aggiungo un event listener al campo di input in modo che quando premo 
+    // un tasto rieseguo l'aggiornamento della lista di prodotti
     searchField.addEventListener(
-        'change',
+        'input',
         (event) => {
             // cerco il valore dentro il target che è il campo di input
             // ovvero il target dell'evento
