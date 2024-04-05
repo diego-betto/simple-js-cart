@@ -55,7 +55,7 @@ const cart = () => {
         },
         qta: () => items.length, // dammi quanti elementi ci sono in carrello
         totale: () => {
-            return items.reduce((acc, item) => acc + item.qta * item.prezzo, 0)
+            return items.reduce((totaleCorrente, item) => totaleCorrente + item.qta * item.prezzo, 0)
 
             // modo con reduce
             // const tot = items.reduce(function(totaleCorrente, item){
@@ -157,11 +157,6 @@ const updateProductsList = (cercato) => {
         // listItem.innerHTML = item.nome + ' <b>' + item.prezzo + '€</b>';
         listItem.innerHTML = `${item.nome}<b>${item.prezzo}€</b>`;
 
-        console.log(
-            Carrello.oggetti(),
-            item
-        )
-
         if (Carrello.oggetti().findIndex((i) => item.sku === i.sku) >=0) {
             listItem.className = 'added'
         }
@@ -213,3 +208,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     )
 })
+console.log('script caricato')
