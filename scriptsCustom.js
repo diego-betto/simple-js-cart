@@ -5,6 +5,11 @@ const li2 = document.createElement('li')
 li1.innerText = 'primo prodotto'
 li2.innerText = 'secondo prodotto'
 
+// const fnDaEseguire = () => {}
+// const fnDaEseguire = (event) => {}
+
+// li1.addEventListener('click', fnDaEseguire)
+// li1.addEventListener('click', () => fnDaEseguire())
 // li1.addEventListener('click', () => alert('hai cliccato'))
 // li2.addEventListener('click', function() {alert('hai cliccato')})
 
