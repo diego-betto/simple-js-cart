@@ -6,6 +6,17 @@ fa la somma da 1 a quel valore e me la restituisce
 console.log(SommaNumeri(5)) // 15
 */
 
+function SommaNumeri(numero) {
+    let finale = 0;
+
+    for(let i = 0; i <= numero; i++) {
+        finale += i;
+    }
+    return finale;
+}
+
+console.log(SommaNumeri(5))
+
 /*
 Esercizio 2
 Scrivere una funzione per generare un oggetto casa.
