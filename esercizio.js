@@ -15,7 +15,11 @@ function SommaNumeri(numero) {
     return finale;
 }
 
+/* 
+TEST
+
 console.log(SommaNumeri(5))
+*/
 
 /*
 Esercizio 2
@@ -54,8 +58,10 @@ const FnCasa = (indirizzo, numero, superficie) => {
 
 const casa1 = FnCasa('via di Qua', 69, 90);
 
-console.log(casa1.statoRiscaldamento())
 /*
+TESt
+console.log(casa1.statoRiscaldamento())
+
 console.log(casa1.accendiRiscaldamento()) // accende, cambia lo stato ad acceso
 console.log(casa1.statoRiscaldamento()) // output 'acceso'
 
@@ -88,3 +94,32 @@ Riceve parametri:
 Espone:
  - metodo saluta() // 'Ciao sono <nome>, ho N anni'
 */
+
+function FnInquilino(nome, annoNascita) {
+    const eta = (new Date()).getFullYear() - annoNascita;
+
+    return {
+        nome, 
+        annoNascita,
+        saluta: () => {
+            return `Ciao sono ${nome}, ho ${eta} anni`;
+        }
+    }
+}
+
+
+const inquilino1 = FnInquilino('Pinco', 1981)
+
+/* TEST
+console.log(inquilino1)
+
+console.log(inquilino1.saluta())
+*/
+
+/*
+Esercizio 4
+Aggiungere a casa1, senza modificare la funzione FnCasa, i metodi:
+ - metodo aggiungiInquilino(inq)
+ - metodo elencoInquilini()
+ - metodo rimuovi inquiliino(inq)
+ */
