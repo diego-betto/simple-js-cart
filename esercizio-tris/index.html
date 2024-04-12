@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            display: flex;
+        }
+
+        div div {
+            width: 50px;
+            border: 1px solid;
+            height: 50px;
+        }
+
+
+        div div:active {
+            background-color: yellow;
+        }
+
+        div.player-1 {
+            background-color: green;
+        }
+
+        div.player-2 {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        const divs = document.querySelectorAll('div div')
+        let isPlayer1 = false;
+
+        const checkWinner = () => console.log('controllo chi ha vinto')
+
+        divs.forEach(el => {
+            el.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (event.target.className === '') {
+                    event.target.className = `player-${isPlayer1 ? '1' : '2'}`
+                    isPlayer1 = !isPlayer1;
+
+                    checkWinner();
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Propagazione eventi</title>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table tr {
+            background-color: orange;
+        }
+
+        table #azione {
+            background-color: green;
+            width: 20%;
+            color: white; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="riga"><td>Riga con stop propagazione</td><td id="azione">Azione</td></tr>
+        <tr id="riga2"><td>Riga senza stop propagazione</td><td id="azione2">Azione</td></tr>
+    </table>
+
+    <script>
+        const action = document.getElementById('azione')
+        const riga = document.getElementById('riga')
+
+        const action2 = document.getElementById('azione2')
+        const riga2 = document.getElementById('riga2')
+
+        // devo evitare che l'evento di click si propaghi alla riga
+        // quindi stoppo la propagazione e poi eseguo le mie istruzioni
+        action.addEventListener('click', (evento) => {
+            evento.stopPropagation();
+            console.log('cliccato su azione')
+        })
+
+        riga.addEventListener('click', () => console.log('cliccato su riga'))
+
+
+        action2.addEventListener('click', () => console.log('cliccato su azione, ma non stoppo la propagazione, scatenerà anche l\'evento sulla riga'))
+        riga2.addEventListener('click', () => console.log('cliccato su riga 2'))
+    </script>
+</body>
+</html>
