@@ -1,6 +1,4 @@
 const confronta = (a, b) => {
-    risultato.innerText = '';
-
     if (a > b) {
       risultato.innerText = 'il maggiore è A'
     } else if (b > a) {
@@ -17,12 +15,20 @@ const confronta = (a, b) => {
  const btn = document.getElementById('invia')
  const risultato = document.getElementById('risultato')
 
+ const controllaCampi = () => parseFloat(num1.value) >= 0 && parseFloat(num2.value) >=0
+
  const eseguiConfronto = (event) => {
     event.preventDefault();
-    confronta(
-        parseFloat(num1.value), 
-        parseFloat(num2.value)
-    )
+    // l'ideale è mettere `required` sui campi di input
+    // per esercizio faccio un controllo via js invece
+    if (controllaCampi()) {
+        confronta(
+            parseFloat(num1.value), 
+            parseFloat(num2.value)
+        )
+    } else {
+        risultato.innerText = 'Ue, beline'
+    }
  }
 
  modulo.addEventListener('submit', eseguiConfronto)
