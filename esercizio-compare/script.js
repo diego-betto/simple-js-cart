@@ -15,7 +15,32 @@ const confronta = (a, b) => {
  const btn = document.getElementById('invia')
  const risultato = document.getElementById('risultato')
 
- const controllaCampi = () => parseFloat(num1.value) >= 0 && parseFloat(num2.value) >=0
+ const controllaCampi = () => {
+    let tuttoOk = true;
+
+    // controlli
+    if (num1.value === '') {
+        tuttoOk = false;
+        num1.classList.add('errore')
+    } else {
+        num1.classList.remove('errore')
+    }
+
+    if (num2.value === '') {
+        tuttoOk = false;
+        num2.classList.add('errore')
+    } else {
+        num2.classList.remove('errore')
+    }
+
+    if (tuttoOk) {
+        risultato.classList.remove('errore')
+    } else {
+        risultato.classList.add('errore')
+    }
+
+    return tuttoOk;
+ }
 
  const eseguiConfronto = (event) => {
     event.preventDefault();
