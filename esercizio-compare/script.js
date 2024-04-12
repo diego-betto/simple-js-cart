@@ -42,8 +42,10 @@ const confronta = (a, b) => {
     return tuttoOk;
  }
 
- const eseguiConfronto = (event) => {
-    event.preventDefault();
+ const eseguiConfronto = (event, prevent = true) => {
+    if (prevent){
+        event.preventDefault();
+    }
     // l'ideale è mettere `required` sui campi di input
     // per esercizio faccio un controllo via js invece
     if (controllaCampi()) {
@@ -52,8 +54,9 @@ const confronta = (a, b) => {
             parseFloat(num2.value)
         )
     } else {
-        risultato.innerText = 'Ue, beline'
+        risultato.innerText = 'Compila i campi necessari'
     }
  }
 
+ modulo.addEventListener('keyup', eseguiConfronto)
  modulo.addEventListener('submit', eseguiConfronto)
