@@ -121,5 +121,53 @@ Esercizio 4
 Aggiungere a casa1, senza modificare la funzione FnCasa, i metodi:
  - metodo aggiungiInquilino(inq)
  - metodo elencoInquilini()
- - metodo rimuovi inquiliino(inq)
+ - metodo rimuoviInquilino(nomeInquilino)
  */
+
+casa1.inquilini = [];
+
+casa1.elencoInquilini = function() {
+    return this.inquilini;
+}
+
+casa1.aggiungiInquilino = function(inq) {
+    this.inquilini.push(inq)
+}
+
+casa1.rimuoviInquilino = function(nomeInq) {
+    const idx = this.inquilini.findIndex((inq) => {
+        return inq.nome === nomeInq;
+    })
+
+    // const idx = this.inquilini.findIndex((inq) => inq.nome === nomeInq)
+
+    if (idx >= 0) {
+        this.inquilini.splice(idx, 1)
+    }
+}
+
+casa1.rimuoviInquilinoInsensitive = function(nomeInq) {
+    const idx = this.inquilini.findIndex((inq) => {
+        return inq.nome.toLowercase() === nomeInq.toLowercase();
+    })
+
+    // const idx = this.inquilini.findIndex((inq) => inq.nome === nomeInq)
+
+    if (idx >= 0) {
+        this.inquilini.splice(idx, 1)
+    }
+}
+
+/* TEST
+console.log(casa1)
+console.log(casa1.elencoInquilini())
+
+casa1.aggiungiInquilino(inquilino1)
+console.log(casa1.elencoInquilini())
+
+casa1.rimuoviInquilino('Pallo')
+console.log(casa1.elencoInquilini())
+
+casa1.rimuoviInquilino('Pinco')
+console.log(casa1.elencoInquilini())
+*/

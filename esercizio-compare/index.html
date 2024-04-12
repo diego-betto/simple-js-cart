@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare</title>
+
+    <style>
+        form {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        div {
+            display: flex;
+            padding: 0.5rem 1rem;
+        }
+
+        form > div + div {
+            margin-top: 1rem;
+        }
+
+        div > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+        }
+
+        #risultato {
+            justify-content: center;
+            padding: 1rem; 
+            border: 1px solid #aaa;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="modulo">
+        <div id="risultato"></div>
+
+        <div>
+            <div>
+                <label for="numero1">Numero A</label>
+                <input id="numero1" type="number">
+            </div>
+            <div>
+                <label for="numero2">Numero B</label>
+                <input id="numero2" type="number">
+            </div>
+        </div>
+
+        <div class="actions">
+            <input id="invia" type="submit" value="Confronta">
+        </div>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
