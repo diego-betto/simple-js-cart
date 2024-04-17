@@ -48,7 +48,7 @@
 <body>
     <section>
         <div>
-            <div id="0"></div>
+            <div id="0" class=""></div>
             <div id="1"></div>
             <div id="2"></div>
         </div>
@@ -173,12 +173,6 @@
         divs.forEach(el => {
             el.addEventListener('click', (event) => {
                 event.stopPropagation();
-                /*if (event.target.className === '') {
-                    event.target.className = `player-${isPlayer1 ? '1' : '2'}`
-                    isPlayer1 = !isPlayer1;
-
-                    checkWinner();
-                }*/
 
                 if (playing) {
                     const posizione = parseInt(event.target.id);

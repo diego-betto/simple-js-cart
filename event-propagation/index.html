@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            padding: 1rem;
+            border: 1px solid #aaa;
+        }
+        table {
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <div>
+            <table>
+                <tr id="riga">
+                    <td>bla bla bla...</td>
+                    <td><button id="elimina">ELIMINA</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('elimina')
+        const riga = document.getElementById('riga')
+        const wrapper = document.getElementById('wrapper')
+
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            console.log('eliminato')
+        })
+        riga.addEventListener('click', () => {console.log('dettagli')})
+        wrapper.addEventListener('click', () => {console.log('wrapper')})
+    </script>
+</body>
+</html>
