@@ -29,43 +29,107 @@
         div.player-2 {
             background-color: blue;
         }
+
+        div.win {
+            background-color: red;
+        }
     </style>
 </head>
 
 <body>
     <div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="0"></div>
+        <div id="1"></div>
+        <div id="2"></div>
     </div>
-
     <div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="3"></div>
+        <div id="4"></div>
+        <div id="5"></div>
     </div>
-
     <div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="6"></div>
+        <div id="7"></div>
+        <div id="8"></div>
     </div>
 
     <script>
         const divs = document.querySelectorAll('div div')
-        let isPlayer1 = false;
+        let currentPlayer = 1;
 
-        const checkWinner = () => console.log('controllo chi ha vinto')
+        const wins = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6],
+        ];
+
+        const board = [
+            0,0,0, // 0, 1, 2
+            0,0,0, // 3, 4, 5
+            0,0,0  // 6, 7, 8
+        ];
+
+        const coloraBox = () => {
+            board.forEach((elemento, idx) => {
+                if(elemento !== 0) {
+                    const box = document.getElementById(idx)
+
+                    if (box) {
+                        box.className = 'player-' + elemento
+                    }
+                } 
+            })
+        }
+
+        const checkWinner = () => {
+            coloraBox();
+
+            const winningState = wins.find(function(sitWin) {
+                const posizione1 = sitWin[0];
+                const posizione2 = sitWin[1];
+                const posizione3 = sitWin[2];
+                
+                const valoreAllaPosizione1 = board[posizione1];
+                const valoreAllaPosizione2 = board[posizione2];
+                const valoreAllaPosizione3 = board[posizione3];
+                
+                return valoreAllaPosizione1 === valoreAllaPosizione2 && 
+                valoreAllaPosizione2 === valoreAllaPosizione3 && 
+                valoreAllaPosizione1 !== 0
+            })
+
+            if (winningState !== undefined) { // [0, 3, 6]
+                const box1 = document.getElementById(winningState[0]);
+                const box2 = document.getElementById(winningState[1]);
+                const box3 = document.getElementById(winningState[2]);
+
+                box1.className = 'win';
+                box2.className = 'win';
+                box3.className = 'win';
+
+                alert('Un giocatore ha vinto')
+            }
+        }
 
         divs.forEach(el => {
             el.addEventListener('click', (event) => {
                 event.stopPropagation();
-                if (event.target.className === '') {
+                /*if (event.target.className === '') {
                     event.target.className = `player-${isPlayer1 ? '1' : '2'}`
                     isPlayer1 = !isPlayer1;
 
                     checkWinner();
+                }*/
+
+                const posizione = parseInt(event.target.id);
+
+                if (board[posizione] === 0) {
+                    board[posizione] = currentPlayer;
                 }
+
+                checkWinner();
+
+                currentPlayer = currentPlayer === 1 ? 2 : 1;
             })
         })
     </script>
