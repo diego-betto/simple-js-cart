@@ -17,7 +17,6 @@
             height: 50px;
         }
 
-
         div div:active {
             background-color: yellow;
         }
@@ -33,30 +32,70 @@
         div.win {
             background-color: red;
         }
+
+        body {
+            display: flex;
+            gap: 2rem;
+        }
+
+        td, th {
+            border: 1px solid #aaa;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <div id="0"></div>
-        <div id="1"></div>
-        <div id="2"></div>
-    </div>
-    <div>
-        <div id="3"></div>
-        <div id="4"></div>
-        <div id="5"></div>
-    </div>
-    <div>
-        <div id="6"></div>
-        <div id="7"></div>
-        <div id="8"></div>
-    </div>
+    <section>
+        <div>
+            <div id="0"></div>
+            <div id="1"></div>
+            <div id="2"></div>
+        </div>
+        <div>
+            <div id="3"></div>
+            <div id="4"></div>
+            <div id="5"></div>
+        </div>
+        <div>
+            <div id="6"></div>
+            <div id="7"></div>
+            <div id="8"></div>
+        </div>
+
+        <button onclick="resetBoard()">RESET</button>
+    </section>
+
+    <section>
+        <h3>Risultati</h3>
+
+        <table>
+            <tr>
+                <th>Player 1</th>
+                <th>Player 2</th>
+            </tr>
+            <tr>
+                <td id="counter-1">0</td>
+                <td id="counter-2">0</td>
+            </tr>
+        </table>
+    </section>
 
     <script>
         const divs = document.querySelectorAll('div div')
         let currentPlayer = 1;
         let playing = true;
+
+        let counter1 = 0;
+        let counter2 = 0;
+
+        const updateCounters = () => {
+            const counter1Element = document.getElementById('counter-1')
+            const counter2Element = document.getElementById('counter-2')
+
+            counter1Element.innerText = counter1;
+            counter2Element.innerText = counter2;
+        }
 
         const wins = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -72,14 +111,22 @@
 
         const coloraBox = () => {
             board.forEach((elemento, idx) => {
-                if(elemento !== 0) {
-                    const box = document.getElementById(idx)
+                const box = document.getElementById(idx)
 
-                    if (box) {
-                        box.className = 'player-' + elemento
+                if (box) {
+                    if(elemento !== 0) {
+                        box.className = 'player-' + elemento;
+                    } else {
+                        box.className = '';
                     }
-                } 
+                }
             })
+        }
+
+        const resetBoard = () => {
+            board.fill(0);
+            coloraBox();
+            playing = true;
         }
 
         const checkWinner = () => {
@@ -107,6 +154,15 @@
                 box1.className = 'win';
                 box2.className = 'win';
                 box3.className = 'win';
+
+                const winningPlayer = board[winningState[0]];
+
+                if (winningPlayer === 1) {
+                    counter1++;
+                } else {
+                    counter2++;
+                }
+                updateCounters();
                 
                 playing = false;
 
