@@ -56,6 +56,7 @@
     <script>
         const divs = document.querySelectorAll('div div')
         let currentPlayer = 1;
+        let playing = true;
 
         const wins = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -106,6 +107,8 @@
                 box1.className = 'win';
                 box2.className = 'win';
                 box3.className = 'win';
+                
+                playing = false;
 
                 alert('Un giocatore ha vinto')
             }
@@ -121,15 +124,17 @@
                     checkWinner();
                 }*/
 
-                const posizione = parseInt(event.target.id);
+                if (playing) {
+                    const posizione = parseInt(event.target.id);
 
-                if (board[posizione] === 0) {
-                    board[posizione] = currentPlayer;
+                    if (board[posizione] === 0) {
+                        board[posizione] = currentPlayer;
+                    }
+
+                    checkWinner();
+
+                    currentPlayer = currentPlayer === 1 ? 2 : 1;
                 }
-
-                checkWinner();
-
-                currentPlayer = currentPlayer === 1 ? 2 : 1;
             })
         })
     </script>
