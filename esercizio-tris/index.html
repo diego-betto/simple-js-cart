@@ -172,6 +172,7 @@
 
         divs.forEach(el => {
             el.addEventListener('click', (event) => {
+                console.log(event)
                 event.stopPropagation();
 
                 if (playing) {
