@@ -9,5 +9,69 @@
     <h1>Alunni</h1>
     <p>Creare un array (5) di alunni, ogni alunno ha un suo checkbox</p>
     <p>Quando clicco su uno dei checkbox, controllo quelli che sono attivi e mostro un messaggio sotto che indica quali sono gli alunni attivi</p>
+
+    <div id="elenco"></div>
+    <div id="risultato"></div>
+
+    <script>
+        const studenti = ['pinco', 'pallino', 'pirlino'];
+
+        const elenco = document.getElementById('elenco');
+        const risultato = document.getElementById('risultato');
+
+        let html = '';
+
+        /*
+        let studentiCheckbox = []
+
+        studenti.forEach((studente, idx) => {
+            html += '<li><input type="checkbox" id="' + idx + '" />' + studente + '</li>';
+            studentiCheckbox.push(false);
+        })
+
+        elenco.innerHTML = html;
+
+        const inputs = document.querySelectorAll('input')
+
+        inputs.forEach((input) => {
+            input.addEventListener('click', (event) => {
+                let risultatoHTML = '';
+                studentiCheckbox[parseInt(event.target.id)] = event.target.checked;
+                
+                studenti.forEach((studente, idx) => {
+                    if (studentiCheckbox[idx]) {
+                        risultatoHTML += studente + ' '
+                    }
+                })
+
+                risultato.innerText = risultatoHTML
+            })
+        })
+        */
+
+        studenti.forEach((studente, idx) => {
+            html += '<li><input type="checkbox" id="' + idx + '" />' + studente + '</li>';
+        })
+
+        elenco.innerHTML = html;
+
+        const inputs = document.querySelectorAll('input')
+
+        inputs.forEach((input) => {
+            input.addEventListener('click', (event) => {
+
+                let risultatoHTML = '';
+
+                inputs.forEach((inp) => {
+                    if(inp.checked){
+                        risultatoHTML += studenti[parseInt(inp.id)] + ' ';
+                    }
+                })
+
+                risultato.innerText = risultatoHTML
+            })
+        })
+
+    </script>
 </body>
 </html>

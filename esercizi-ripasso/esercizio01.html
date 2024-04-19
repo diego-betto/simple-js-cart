@@ -10,5 +10,31 @@
     <p>Il fattoriale di un numero si trova moltiplicando tutti i numeri naturali che lo precedono (escluso lo zero), con esso incluso. Ad esempio, il "4!" darà come risultato "4 x 3 x 2 x 1 = 24" ed il "9!" è uguale a "9 x 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 362.880".</p>
     
     <p>Creare una form che accetta in input un numero e al click su un bottone visualizza il fattoriale di quel numero</p>
+
+    <form id="modulo">
+        <input type="number" id="numero" />
+        <input type="submit" value="Calcola" />
+    </form>
+
+    <div id="risultato"></div>
+
+    <script>
+        const modulo = document.getElementById('modulo')
+        const numero = document.getElementById('numero')
+        const risultato = document.getElementById('risultato')
+
+        modulo.addEventListener('submit', (event) => {
+            event.preventDefault()
+            console.log('submit', parseInt(numero.value))
+
+            let result = parseInt(numero.value); // 3
+
+            for(let i = parseInt(numero.value) - 1; i > 0; i--) {
+                result *= i;
+            }
+
+            risultato.innerText = result;
+        })
+    </script>
 </body>
 </html>
